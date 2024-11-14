@@ -30,7 +30,7 @@ public class MatchScreen : MonoBehaviour
 
     private async void JoinMatchingQueue()
     {
-        // Marcar al jugador como "en espera"
+        // Marcar al jugador como en espera
         await playersRef.Child(userId).Child("status").SetValueAsync("waiting");
         Debug.Log("Jugador en espera para emparejamiento.");
     }
@@ -52,7 +52,7 @@ public class MatchScreen : MonoBehaviour
         string friendId = args.Snapshot.Key;
         DataSnapshot statusSnapshot = await playersRef.Child(friendId).Child("status").GetValueAsync();
 
-        // Verificar si el amigo está en la cola de emparejamiento ("waiting")
+        // Verificar si el amigo está en la cola de emparejamiento waiting
         if (statusSnapshot.Exists && statusSnapshot.Value.ToString() == "waiting")
         {
             Debug.Log($"Emparejado con {friendId}");
@@ -71,7 +71,7 @@ public class MatchScreen : MonoBehaviour
             await IncrementMatchCount(userId);
             await IncrementMatchCount(friendId);
 
-            // Cambiar el estado a "playing" para ambos jugadores e iniciar el juego
+            // Cambiar el estado a playing para ambos jugadores e iniciar el juego
             await StartGameWithFriend(friendId, friendName);
 
             // Detener la escucha de cambios una vez emparejado
@@ -90,11 +90,11 @@ public class MatchScreen : MonoBehaviour
         // Mostrar el nombre del amigo en la UI para ambos jugadores
         friendNameText.text = friendName;
 
-        // Cambiar el estado de ambos jugadores a "playing"
+        // Cambiar el estado de ambos jugadores a playing
         await playersRef.Child(userId).Child("status").SetValueAsync("playing");
         await playersRef.Child(friendId).Child("status").SetValueAsync("playing");
 
-        // Aquí puedes añadir lógica para iniciar el juego, como cargar una escena o habilitar UI
+        // Aqui puedes añadir logica para iniciar el juego, como cargar una escena o habilitar UI
     }
 
     private async Task IncrementMatchCount(string playerId)
@@ -109,7 +109,7 @@ public class MatchScreen : MonoBehaviour
     {
         if (args.Snapshot.Exists)
         {
-            // Obtener el nombre del amigo emparejado cuando el campo "matchedFriendName" cambie
+            // Obtener el nombre del amigo emparejado cuando el campo matchedFriendName cambie
             string matchedFriendName = args.Snapshot.Value.ToString();
             friendNameText.text = matchedFriendName;
             Debug.Log($"Emparejamiento completado con {matchedFriendName}. ¡Listo para jugar!");
@@ -146,7 +146,7 @@ public class MatchScreen : MonoBehaviour
 
     public async Task LeaveMatchingQueue()
     {
-        // Eliminar el estado de "waiting" y "playing" y poner el jugador como "idle"
+        // Eliminar el estado de waiting y playing y poner el jugador como idle
         await playersRef.Child(userId).Child("status").SetValueAsync("idle");
         Debug.Log("Jugador ha salido de la cola de emparejamiento.");
 
@@ -166,7 +166,7 @@ public class MatchScreen : MonoBehaviour
             Debug.Log("Datos de emparejamiento eliminados.");
         }
 
-        // Volver a la pantalla de perfil u otra acción deseada
+        // Volver a la pantalla de perfil u otra accion deseada
         AppNavegation.Instance.ShowProfileScreen();
     }
 }

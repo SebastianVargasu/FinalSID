@@ -36,7 +36,7 @@ public class GameUserInfo : MonoBehaviour
             userId = auth.CurrentUser.UserId;
             onlineStatusRef = databaseRef.Child("players").Child(userId).Child("isOnline");
 
-            // Llama a la función para gestionar la presencia del usuario
+            // Llama a la funcion para gestionar la presencia del usuario
             MonitorConnectionStatus();
         }
     }
@@ -113,15 +113,15 @@ public class GameUserInfo : MonoBehaviour
 
     private void MonitorConnectionStatus()
     {
-        // Escucha el estado de conexión de Firebase
+        // Escucha el estado de conexion de firebase
         DatabaseReference connectedRef = FirebaseDatabase.DefaultInstance.GetReference(".info/connected");
 
         connectedRef.ValueChanged += (object sender, ValueChangedEventArgs args) =>
         {
             if (args.DatabaseError == null && args.Snapshot.Exists && args.Snapshot.Value is bool isConnected && isConnected)
             {
-                // Si está conectado, establece el estado a true
-                onlineStatusRef.OnDisconnect().SetValue(false); // Se marcará como desconectado al perder la conexión
+                // Si esta conectado, establece el estado a true
+                onlineStatusRef.OnDisconnect().SetValue(false); // Se marcara como desconectado al perder la conexion
                 UpdateOnlineStatus(true);
             }
         };

@@ -21,12 +21,6 @@ public class LoginAndRegister : MonoBehaviour
     [SerializeField] private TMP_InputField passwordRegisterInput;
     [SerializeField] private TMP_InputField usernameRegisterInput;
 
-    [SerializeField] private TextMeshProUGUI logText;
-    [SerializeField] private Button logOutButton;
-    [SerializeField] private Button playButton;
-    [SerializeField] private Button LoginButton;
-    [SerializeField] private Button RegisterButton;
-    [SerializeField] private Button ResetpasswordButton;
     private FirebaseAuth auth;
     private FirebaseUser user;
 
@@ -131,27 +125,6 @@ public class LoginAndRegister : MonoBehaviour
             Debug.LogFormat("User signed in successfully: {0} ({1})",
                 result.User.DisplayName, result.User.UserId);
 
-        });
-    }
-
-    public void ResetPassword()
-    {
-        auth.SendPasswordResetEmailAsync(emailLoginInput.text).ContinueWith(task =>
-        {
-            if (task.IsCanceled)
-            {
-                logText.text = "SendPasswordResetEmailAsync was canceled.";
-
-                return;
-            }
-
-            if (task.IsFaulted)
-            {
-                Debug.LogError(task.Exception.Message);
-                return;
-            }
-
-            Debug.Log("Successfully sent password reset email.");
         });
     }
 
