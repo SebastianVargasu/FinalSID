@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "934060740329",
+    "firebase_url": "https://finalsid-default-rtdb.firebaseio.com",
+    "project_id": "finalsid",
+    "storage_bucket": "finalsid.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934060740329:android:d11989efbae83505082a78",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.FinalSID"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDnuqcfOIKqUtyb-E_JZi8JRD_4orTNxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
